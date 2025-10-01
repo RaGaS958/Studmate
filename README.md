@@ -31,13 +31,22 @@ studmate/
 ## 🖥️ Demo Preview
 
 ### Home Page
-![Homepage Screenshot](assets/demo-home.png)
+![Homepage Screenshot](assets/Home-demo.png)
 
 ### Dashboard
-![Dashboard Screenshot](assets/demo-dashboard.png)
+![Dashboard Screenshot](assets/dashboard-demo.png)
 
 ### Sticky Notes
-![Sticky Notes Screenshot](assets/demo-sticky.png)
+![Sticky Notes Screenshot](assets/stickynotes-demo.png)
+
+### Notes
+![Sticky Notes Screenshot](assets/notes-demo.png)
+
+### Analytics
+![Sticky Notes Screenshot](assets/analytics-demo.png)
+
+### Settings
+![Sticky Notes Screenshot](assets/settings-demo.png)
 
 *(You can replace `assets/...` with your own screenshots.)*
 
