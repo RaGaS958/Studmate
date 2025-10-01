@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studmate - By Pushkar Khattri</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+ <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">📚 Studmate</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#" onclick="showPage('homepage')" class="active">Home</a></li>
+                <li><a href="#" onclick="showPage('dashboard')">Dashboard</a></li>
+                <li><a href="#" onclick="showPage('sticky-notes')">Sticky Notes</a></li>
+                <li><a href="#" onclick="showPage('notes-manager')">Notes</a></li>
+                <li><a href="#" onclick="showPage('analytics')">Analytics</a></li>
+                <li><a href="#" onclick="showPage('settings')">Settings</a></li>
+            </ul>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Homepage -->
+    <div id="homepage" class="page active">
+        <section class="hero">
+            <div class="particles" id="particles"></div>
+            <div class="hero-content">
+                <h1>Student Dashboard</h1>
+                <p>Your all-in-one productivity companion</p>
+                <button class="cta-button" onclick="showPage('dashboard')">Get Started</button>
+            </div>
+        </section>
+
+        <section class="features-section">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem;">Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-calendar-check"></i>
+                    <h3>Daily Work Tracker</h3>
+                    <p>Log your activities and visualize your progress with GitHub-style contribution graphs</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-sticky-note"></i>
+                    <h3>Sticky Notes</h3>
+                    <p>Create colorful, draggable notes with AI-powered insights and suggestions</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Pomodoro Timer</h3>
+                    <h3>Focus Timer</h3>
+                    <p>Boost productivity with customizable work sessions and break reminders</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-book"></i>
+                    <h3>Notes Manager</h3>
+                    <p>Organize your study materials with tags, folders, and powerful search</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-trophy"></i>
+                    <h3>Gamification</h3>
+                    <p>Earn points, maintain streaks, and unlock badges for your achievements</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-robot"></i>
+                    <h3>AI Assistant</h3>
+                    <h3>AI Chatbot</h3>
+                    <p>Get study help, productivity tips, and note summaries powered by AI</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-section">
+            <div class="about-content">
+                <div class="avatar">👨‍💻</div>
+                <h2>About Me</h2>
+                <p style="font-size: 1.2rem; color: var(--text-secondary); margin-top: 1rem;">
+                    Hi, I'm <strong style="background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Pushkar Khattri</strong> — 
+                    the developer behind this Student Dashboard project. I built this to help students boost their productivity 
+                    and manage their academic life more effectively.
+                </p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Dashboard Page -->
+    <div id="dashboard" class="page">
+        <div class="dashboard-container">
+            <h1>Dashboard</h1>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="totalPoints">0</div>
+                    <div>Total Points</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="currentStreak">0</div>
+                    <div>Day Streak</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="totalActivities">0</div>
+                    <div>Activities Logged</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="totalNotes">0</div>
+                    <div>Notes Created</div>
+                </div>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <h3>Log Activity</h3>
+                    <input type="text" id="activityInput" placeholder="What did you work on today?" 
+                           style="width: 100%; padding: 0.8rem; margin: 1rem 0; background: var(--dark-bg); border: 2px solid var(--primary-blue); border-radius: 10px; color: var(--text-primary);">
+                    <select id="activityCategory" style="width: 100%; padding: 0.8rem; margin-bottom: 1rem; background: var(--dark-bg); border: 2px solid var(--primary-blue); border-radius: 10px; color: var(--text-primary);">
+                        <option value="study">Study</option>
+                        <option value="project">Project</option>
+                        <option value="task">Task</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <button onclick="logActivity()" style="width: 100%; padding: 1rem; background: var(--gradient); border: none; border-radius: 10px; color: white; cursor: pointer; font-size: 1rem;">
+                        Log Activity
+                    </button>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3>Pomodoro Timer</h3>
+                    <div class="timer-container">
+                        <div class="timer-display" id="timerDisplay">25:00</div>
+                        <div class="timer-controls">
+                            <button class="timer-btn start" onclick="startTimer()">Start</button>
+                            <button class="timer-btn pause" onclick="pauseTimer()">Pause</button>
+                            <button class="timer-btn reset" onclick="resetTimer()">Reset</button>
+                        </div>
+                        <input type="number" id="timerDuration" value="25" min="1" max="60" 
+                               style="width: 100px; padding: 0.5rem; margin-top: 1rem; background: var(--dark-bg); border: 2px solid var(--primary-blue); border-radius: 10px; color: var(--text-primary);">
+                        <span style="margin-left: 0.5rem;">minutes</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <h3>Activity Graph <span id="graphPeriod" style="font-size: 0.9rem; color: var(--text-secondary);">(Last Year)</span></h3>
+                </div>
+                <div class="contribution-graph" id="contributionGraph"></div>
+            </div>
+
+            <div class="dashboard-card">
+                <h3>Badges & Achievements</h3>
+                <div class="badges-container" id="badgesContainer">
+                    <div class="badge">🏆 Getting Started</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sticky Notes Page -->
+    <div id="sticky-notes" class="page">
+        <div class="sticky-notes-container" id="stickyNotesContainer">
+            <h1 style="padding: 0 2rem;">Sticky Notes</h1>
+        </div>
+        <button class="add-note-btn" onclick="createStickyNote()">+</button>
+    </div>
+
+    <!-- Notes Manager Page -->
+    <div id="notes-manager" class="page">
+        <div class="notes-manager">
+            <h1>Notes & Links Manager</h1>
+            <input type="text" class="search-bar" id="notesSearch" placeholder="🔍 Search notes..." oninput="searchNotes()">
+            
+            <div style="margin-bottom: 2rem;">
+                <button onclick="openAddNoteModal()" style="padding: 1rem 2rem; background: var(--gradient); border: none; border-radius: 10px; color: white; cursor: pointer; font-size: 1rem;">
+                    + Add Note/Link
+                </button>
+            </div>
+
+            <div class="notes-grid" id="notesGrid"></div>
+        </div>
+    </div>
+
+    <!-- Analytics Page -->
+    <div id="analytics" class="page">
+        <div class="dashboard-container">
+            <h1>Analytics & Insights</h1>
+            
+            <div class="analytics-grid">
+                <div class="chart-container">
+                    <h3>Weekly Activity</h3>
+                    <canvas id="weeklyChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3>Category Distribution</h3>
+                    <canvas id="categoryChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Page -->
+    <div id="settings" class="page">
+        <div class="settings-container">
+            <h1>Settings</h1>
+
+            <div class="setting-group">
+                <h3>Theme</h3>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;">
+                    <span>Dark Mode</span>
+                    <div class="toggle-switch active" id="themeToggle" onclick="toggleTheme()">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="setting-group">
+                <h3>AI Configuration</h3>
+                
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Select AI Model</label>
+                    <select id="aiModelSelect" style="width: 100%; padding: 1rem; background: var(--dark-bg); border: 2px solid var(--primary-blue); border-radius: 10px; color: var(--text-primary); font-size: 1rem;">
+                        <option value="chatgpt">ChatGPT (OpenAI)</option>
+                        <option value="claude">Claude (Anthropic)</option>
+                        <option value="gemini">Gemini (Google)</option>
+                        <option value="groq">Groq</option>
+                    </select>
+                </div>
+
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">API Key</label>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.5rem;">
+                        Enter your API key to enable AI features (chatbot, note insights, summaries)
+                    </p>
+                    <input type="password" class="api-input" id="apiKeyInput" placeholder="Enter API Key">
+                </div>
+                
+                <button onclick="saveApiKey()" style="margin-bottom: 1rem; padding: 1rem 2rem; background: var(--gradient); border: none; border-radius: 10px; color: white; cursor: pointer; width: 100%;">
+                    Save AI Configuration
+                </button>
+                
+                <div style="padding: 1rem; background: var(--dark-bg); border-radius: 10px; border: 2px solid var(--primary-blue);">
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <div>
+                            <strong>AI Model:</strong> <span id="currentAiModel">Not Set</span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 0.5rem;">
+                        <strong>Status:</strong> <span id="aiStatus">AI Disabled</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="setting-group">
+                <h3>Data Management</h3>
+                <button onclick="exportData()" style="padding: 1rem 2rem; background: var(--primary-blue); border: none; border-radius: 10px; color: white; cursor: pointer; margin-right: 1rem;">
+                    Export Data
+                </button>
+                <button onclick="resetData()" style="padding: 1rem 2rem; background: var(--primary-red); border: none; border-radius: 10px; color: white; cursor: pointer;">
+                    Reset All Data
+                </button>
+            </div>
+
+            <div class="setting-group">
+                <h3>AI Chatbot</h3>
+                <div id="chatbot" style="min-height: 300px; background: var(--dark-bg); border-radius: 10px; padding: 1rem; margin-bottom: 1rem; overflow-y: auto;">
+                    <div style="color: var(--text-secondary); text-align: center; padding: 2rem;">
+                        Enter API key above to enable chatbot
+                    </div>
+                </div>
+                <div style="display: flex; gap: 1rem;">
+                    <input type="text" id="chatInput" placeholder="Ask me anything..." style="flex: 1; padding: 1rem; background: var(--dark-bg); border: 2px solid var(--primary-blue); border-radius: 10px; color: var(--text-primary);">
+                    <button onclick="sendChatMessage()" style="padding: 1rem 2rem; background: var(--gradient); border: none; border-radius: 10px; color: white; cursor: pointer;">
+                        Send
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Note Modal -->
+    <div class="modal" id="addNoteModal">
+        <div class="modal-content">
+            <h2>Add Note/Link</h2>
+            <input type="text" id="noteTitle" placeholder="Title" style="width: 100%; padding: 1rem; margin: 1rem 0; background: var(--dark-bg); border: 2px solid var(--primary-blue); border-radius: 10px; color: var(--text-primary);">
+            <textarea id="noteContent" placeholder="Content or URL" style="width: 100%; padding: 1rem; margin-bottom: 1rem; background: var(--dark-bg); border: 2px solid var(--primary-blue); border-radius: 10px; color: var(--text-primary); min-height: 150px;"></textarea>
+            <input type="text" id="noteTags" placeholder="Tags (comma separated)" style="width: 100%; padding: 1rem; margin-bottom: 1rem; background: var(--dark-bg); border: 2px solid var(--primary-blue); border-radius: 10px; color: var(--text-primary);">
+            <div style="display: flex; gap: 1rem;">
+                <button onclick="saveNote()" style="flex: 1; padding: 1rem; background: var(--gradient); border: none; border-radius: 10px; color: white; cursor: pointer;">Save</button>
+                <button onclick="closeModal()" style="flex: 1; padding: 1rem; background: var(--card-bg); border: 2px solid var(--primary-red); border-radius: 10px; color: white; cursor: pointer;">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="tooltip" id="tooltip"></div>
+<script src="app.js"></script>
+</body>
+</html>
