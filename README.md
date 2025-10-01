@@ -31,7 +31,7 @@ studmate/
 ## 🖥️ Demo Preview
 
 ### Home Page
-![Homepage Screenshot](assets/Home-demo.png)
+![Homepage Screenshot](assets/home-demo.png)
 
 ### Dashboard
 ![Dashboard Screenshot](assets/dashboard-demo.png)
