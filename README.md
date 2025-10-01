@@ -48,10 +48,11 @@ studmate/
 ### Settings
 ![Sticky Notes Screenshot](assets/settings-demo.png)
 
-*(You can replace `assets/...` with your own screenshots.)*
 
 ---
-
+## Demo
+Live Preview :-https://ragas958.github.io/Studmate/
+---
 ## 🚀 Getting Started
 
 ### 1. Clone Repository
