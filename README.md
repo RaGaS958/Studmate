@@ -51,7 +51,9 @@ studmate/
 
 ---
 ## Demo
+
 Live Preview :-https://ragas958.github.io/Studmate/
+
 ---
 ## 🚀 Getting Started
 
